@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Coroutine_SearchImage</string>
+    <string name="enter_search_word">검색어를 입력하세요.</string>
+</resources>

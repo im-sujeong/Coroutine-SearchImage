@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/searchImageFragment">
+
+    <fragment
+        android:id="@+id/searchImageFragment"
+        android:name="com.sue.coroutine_searchimage.ui.main.search.SearchImageFragment"
+        android:label="fragment_search_image"
+        tools:layout="@layout/fragment_search_image" />
+    <fragment
+        android:id="@+id/favoriteImageFragment"
+        android:name="com.sue.coroutine_searchimage.ui.main.favorite.FavoriteImageFragment"
+        android:label="fragment_favorite_image"
+        tools:layout="@layout/fragment_favorite_image" />
+</navigation>
