@@ -9,6 +9,8 @@ import com.sue.coroutine_searchimage.data.network.SearchApi
 import com.sue.coroutine_searchimage.data.network.url.Url.BASE_URL
 import com.sue.coroutine_searchimage.data.repository.ImageRepositoryImpl
 import com.sue.coroutine_searchimage.domain.repository.ImageRepository
+import com.sue.coroutine_searchimage.domain.use_case.SearchImageUseCase
+import com.sue.coroutine_searchimage.domain.use_case.UseCases
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -73,5 +75,13 @@ object AppModule {
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideUseCases(imageRepository: ImageRepository): UseCases {
+        return UseCases(
+            searchImageUseCase = SearchImageUseCase(imageRepository)
+        )
     }
 }

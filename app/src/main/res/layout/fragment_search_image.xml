@@ -18,7 +18,10 @@
         android:textColorHint="@color/gray_828282"
         android:hint="@string/enter_search_word"
         android:fontFamily="@font/pretendard_regular"
+        android:maxLines="1"
+        android:inputType="text"
         android:background="@drawable/bg_search_edittext"
+        android:imeOptions="actionSearch"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>

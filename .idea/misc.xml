@@ -6,7 +6,7 @@
         <entry key="app/src/main/res/drawable/bg_search_edittext.xml" value="0.1715" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.20833333333333334" />
         <entry key="app/src/main/res/layout/fragment_favorite_image.xml" value="0.20833333333333334" />
-        <entry key="app/src/main/res/layout/fragment_search_image.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/fragment_search_image.xml" value="0.33" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.20833333333333334" />
       </map>
     </option>
