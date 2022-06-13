@@ -6,7 +6,6 @@ import com.sue.coroutine_searchimage.domain.model.Image
 
 @Entity
 data class ImageEntity(
-    @PrimaryKey val id: Int? = null,
     val title: String,
     val link: String,
     val thumbnail: String,
@@ -22,3 +21,8 @@ data class ImageEntity(
             sizeWidth = sizeWidth
         )
 }
+
+fun List<ImageEntity>.toImages(): List<Image> =
+    map {
+        it.toImage()
+    }

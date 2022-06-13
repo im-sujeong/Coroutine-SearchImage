@@ -33,10 +33,10 @@ class MainActivity : AppCompatActivity() {
     private fun initViews() = with(binding) {
         setSupportActionBar(toolBar)
 
-        val appBarConfiguration = AppBarConfiguration(setOf(R.id.navigation_search, R.id.navigation_favorite))
+        val appBarConfiguration = AppBarConfiguration(setOf(R.id.searchImageFragment, R.id.favoriteImageFragment))
 
         setupActionBarWithNavController(navigationController, appBarConfiguration)
-        this.bottomNavView.setupWithNavController(navigationController)
+        bottomNavView.setupWithNavController(navigationController)
 
         navigationController.addOnDestinationChangedListener { _, destination, argument ->
             when (destination.id) {

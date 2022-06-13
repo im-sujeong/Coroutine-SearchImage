@@ -9,12 +9,15 @@ import com.sue.coroutine_searchimage.data.network.SearchApi
 import com.sue.coroutine_searchimage.data.network.url.Url.BASE_URL
 import com.sue.coroutine_searchimage.data.repository.ImageRepositoryImpl
 import com.sue.coroutine_searchimage.domain.repository.ImageRepository
+import com.sue.coroutine_searchimage.domain.use_case.GetFavoriteImageUseCase
+import com.sue.coroutine_searchimage.domain.use_case.InsertFavoriteImageUseCase
 import com.sue.coroutine_searchimage.domain.use_case.SearchImageUseCase
 import com.sue.coroutine_searchimage.domain.use_case.UseCases
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -24,14 +27,18 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object AppModule {
+class AppModule {
     @Provides
     @Singleton
     fun provideImageRepository(
         searchApi: SearchApi,
         db: ImageDatabase
     ): ImageRepository {
-        return ImageRepositoryImpl(searchApi, db.imageDao)
+        return ImageRepositoryImpl(
+            Dispatchers.IO,
+            searchApi,
+            db.imageDao
+        )
     }
 
     @Provides
@@ -81,7 +88,9 @@ object AppModule {
     @Singleton
     fun provideUseCases(imageRepository: ImageRepository): UseCases {
         return UseCases(
-            searchImageUseCase = SearchImageUseCase(imageRepository)
+            searchImageUseCase = SearchImageUseCase(imageRepository),
+            insertFavoriteImageUseCase = InsertFavoriteImageUseCase(imageRepository),
+            getFavoriteImageUseCase = GetFavoriteImageUseCase(imageRepository)
         )
     }
 }
