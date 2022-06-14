@@ -12,7 +12,6 @@ import com.sue.coroutine_searchimage.domain.repository.ImageRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.map
 
 class ImageRepositoryImpl(
     private val ioDispatcher: CoroutineDispatcher,
@@ -36,5 +35,9 @@ class ImageRepositoryImpl(
 
     override suspend fun insertFavoriteImage(imageEntity: ImageEntity) {
         imageDao.insertImage(imageEntity)
+    }
+
+    override suspend fun deleteFavoriteImage(imageEntity: ImageEntity) {
+        imageDao.deleteImage(imageEntity)
     }
 }

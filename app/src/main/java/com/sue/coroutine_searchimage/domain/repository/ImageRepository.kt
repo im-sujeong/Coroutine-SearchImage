@@ -11,4 +11,6 @@ interface ImageRepository {
     suspend fun searchImages(query: String): Flow<PagingData<Image>>
 
     suspend fun insertFavoriteImage(imageEntity: ImageEntity)
+
+    suspend fun deleteFavoriteImage(imageEntity: ImageEntity)
 }

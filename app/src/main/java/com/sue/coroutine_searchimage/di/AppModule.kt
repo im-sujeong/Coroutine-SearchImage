@@ -9,10 +9,7 @@ import com.sue.coroutine_searchimage.data.network.SearchApi
 import com.sue.coroutine_searchimage.data.network.url.Url.BASE_URL
 import com.sue.coroutine_searchimage.data.repository.ImageRepositoryImpl
 import com.sue.coroutine_searchimage.domain.repository.ImageRepository
-import com.sue.coroutine_searchimage.domain.use_case.GetFavoriteImageUseCase
-import com.sue.coroutine_searchimage.domain.use_case.InsertFavoriteImageUseCase
-import com.sue.coroutine_searchimage.domain.use_case.SearchImageUseCase
-import com.sue.coroutine_searchimage.domain.use_case.UseCases
+import com.sue.coroutine_searchimage.domain.use_case.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -90,7 +87,8 @@ class AppModule {
         return UseCases(
             searchImageUseCase = SearchImageUseCase(imageRepository),
             insertFavoriteImageUseCase = InsertFavoriteImageUseCase(imageRepository),
-            getFavoriteImageUseCase = GetFavoriteImageUseCase(imageRepository)
+            getFavoriteImageUseCase = GetFavoriteImageUseCase(imageRepository),
+            deleteFavoriteImageUseCase = DeleteFavoriteImageUseCase(imageRepository)
         )
     }
 }

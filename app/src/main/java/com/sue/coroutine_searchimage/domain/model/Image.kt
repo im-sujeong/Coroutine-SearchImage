@@ -8,7 +8,8 @@ data class Image(
     val link: String,
     val thumbnail: String,
     val sizeHeight: Int,
-    val sizeWidth: Int
+    val sizeWidth: Int,
+    val isFavorite: Boolean = false
 ) {
     fun toImageEntity(): ImageEntity =
         ImageEntity(

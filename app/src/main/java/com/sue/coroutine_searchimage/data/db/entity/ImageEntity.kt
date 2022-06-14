@@ -6,7 +6,7 @@ import com.sue.coroutine_searchimage.domain.model.Image
 
 @Entity
 data class ImageEntity(
-    val title: String,
+    @PrimaryKey val title: String,
     val link: String,
     val thumbnail: String,
     val sizeHeight: Int,

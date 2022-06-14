@@ -24,17 +24,20 @@ internal class SearchImageFragment: BaseFragment<SearchImageViewModel, FragmentS
 
     override fun getViewBinding(): FragmentSearchImageBinding = FragmentSearchImageBinding.inflate(layoutInflater)
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.fetchData()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel.fetchData()
 
         initViews()
     }
 
     private val adapter by lazy {
-        SearchImageAdapter(onClickImage = {
-            viewModel.state
+        SearchImageAdapter(onClickImage = { image ->
+            viewModel.favoriteImage(image)
         })
     }
 
