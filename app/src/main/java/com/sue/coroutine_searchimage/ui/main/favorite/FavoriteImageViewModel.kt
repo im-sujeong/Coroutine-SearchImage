@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sue.coroutine_searchimage.domain.model.Image
 import com.sue.coroutine_searchimage.domain.use_case.UseCases
+import com.sue.coroutine_searchimage.ui.main.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.launchIn
@@ -17,18 +18,18 @@ import javax.inject.Inject
 @HiltViewModel
 class FavoriteImageViewModel @Inject constructor(
     private val useCases: UseCases
-): ViewModel() {
+): BaseViewModel() {
     private val _state = MutableLiveData<FavoriteImageState>()
     val state: LiveData<FavoriteImageState> = _state
 
-    fun fetchData() {
+    override fun fetchData() = viewModelScope.launch{
         Log.e("sujeong", "fetchData()")
 
         useCases.getFavoriteImageUseCase()
             .onEach {
                 setState(FavoriteImageState.Success(it))
             }
-            .launchIn(viewModelScope)
+            .collect()
     }
 
     fun deleteFavoriteImage(image: Image) = viewModelScope.launch{

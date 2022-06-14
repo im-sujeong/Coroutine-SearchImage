@@ -8,12 +8,17 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
 
-internal abstract class BaseFragment<VM: ViewModel, VB: ViewBinding>: Fragment(){
+internal abstract class BaseFragment<VM: BaseViewModel, VB: ViewBinding>: Fragment(){
     abstract val viewModel: VM
 
     protected lateinit var binding: VB
 
     abstract fun getViewBinding(): VB
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.fetchData()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

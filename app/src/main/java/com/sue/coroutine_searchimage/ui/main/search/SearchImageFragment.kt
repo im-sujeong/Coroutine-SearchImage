@@ -10,6 +10,7 @@ import android.view.inputmethod.EditorInfo
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.paging.PagingData
 import com.sue.coroutine_searchimage.databinding.FragmentSearchImageBinding
 import com.sue.coroutine_searchimage.domain.model.Image
@@ -17,17 +18,13 @@ import com.sue.coroutine_searchimage.ui.main.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 
 @AndroidEntryPoint
 internal class SearchImageFragment: BaseFragment<SearchImageViewModel, FragmentSearchImageBinding>() {
     override val viewModel: SearchImageViewModel by viewModels()
 
     override fun getViewBinding(): FragmentSearchImageBinding = FragmentSearchImageBinding.inflate(layoutInflater)
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel.fetchData()
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -57,6 +54,13 @@ internal class SearchImageFragment: BaseFragment<SearchImageViewModel, FragmentS
         rvImage.adapter = adapter
 
         adapter.addLoadStateListener {
+            when(it.refresh) {
+                is LoadState.Error -> {
+                    //TODO 페이징 사용시 에러 처리는 이곳에서..
+                    val error = (it.refresh as LoadState.Error).error
+                }
+            }
+
             if(it.append.endOfPaginationReached ) {
                 tvEmptyList.isVisible = adapter.itemCount == 0
             }else {

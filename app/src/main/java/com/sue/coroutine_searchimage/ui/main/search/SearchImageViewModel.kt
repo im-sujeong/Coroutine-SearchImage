@@ -10,6 +10,7 @@ import androidx.paging.cachedIn
 import com.sue.coroutine_searchimage.domain.model.Image
 import com.sue.coroutine_searchimage.domain.use_case.SearchImageUseCase
 import com.sue.coroutine_searchimage.domain.use_case.UseCases
+import com.sue.coroutine_searchimage.ui.main.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -18,13 +19,13 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchImageViewModel @Inject constructor(
     private val useCases: UseCases
-): ViewModel() {
+): BaseViewModel() {
     private val _state = MutableLiveData<SearchImageState>()
     val state : LiveData<SearchImageState> = _state
 
     private val queryFlow = MutableSharedFlow<String>()
 
-    fun fetchData() = viewModelScope.launch{
+    override fun fetchData() = viewModelScope.launch{
         queryFlow
             .flatMapLatest {
                 searchImage(it)
@@ -37,11 +38,11 @@ class SearchImageViewModel @Inject constructor(
 
     private suspend fun searchImage(query: String): Flow<PagingData<Image>> = useCases.searchImageUseCase(query)
 
-    fun handleQuery(query: String) = viewModelScope.launch {
+    fun handleQuery(query: String) = viewModelScope.launch(errorHandler) {
         queryFlow.emit(query)
     }
 
-    fun favoriteImage(image: Image) = viewModelScope.launch{
+    fun favoriteImage(image: Image) = viewModelScope.launch(errorHandler){
         useCases.insertFavoriteImageUseCase(image)
     }
 
