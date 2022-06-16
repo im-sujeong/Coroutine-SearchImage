@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.sue.coroutine_searchimage.domain.model.Image
+import com.sue.coroutine_searchimage.domain.model.ImageModel
 import com.sue.coroutine_searchimage.domain.use_case.UseCases
 import com.sue.coroutine_searchimage.ui.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -33,14 +33,14 @@ class SearchImageViewModel @Inject constructor(
             }
     }
 
-    private suspend fun searchImage(query: String): Flow<PagingData<Image>> = useCases.searchImageUseCase(query)
+    private suspend fun searchImage(query: String): Flow<PagingData<ImageModel>> = useCases.searchImageUseCase(query)
 
     fun handleQuery(query: String) = viewModelScope.launch(errorHandler) {
         queryFlow.emit(query)
     }
 
-    fun favoriteImage(image: Image) = viewModelScope.launch(errorHandler){
-        useCases.insertFavoriteImageUseCase(image)
+    fun favoriteImage(imageModel: ImageModel) = viewModelScope.launch(errorHandler){
+        useCases.insertFavoriteImageUseCase(imageModel)
     }
 
     private fun setState(state: SearchImageState) {

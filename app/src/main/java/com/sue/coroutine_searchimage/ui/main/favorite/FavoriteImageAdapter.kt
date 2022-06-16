@@ -2,24 +2,23 @@ package com.sue.coroutine_searchimage.ui.main.favorite
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.sue.coroutine_searchimage.databinding.ItemImageBinding
-import com.sue.coroutine_searchimage.domain.model.Image
+import com.sue.coroutine_searchimage.domain.model.ImageModel
 import com.sue.coroutine_searchimage.extensions.loadImage
 
 class FavoriteImageAdapter(
-    private val onClickImage: (Image) -> Unit
-): ListAdapter<Image, FavoriteImageAdapter.ViewHolder>(diffUtil) {
+    private val onClickImage: (ImageModel) -> Unit
+): ListAdapter<ImageModel, FavoriteImageAdapter.ViewHolder>(diffUtil) {
     companion object {
-        val diffUtil = object : DiffUtil.ItemCallback<Image>() {
-            override fun areItemsTheSame(oldItem: Image, newItem: Image): Boolean {
+        val diffUtil = object : DiffUtil.ItemCallback<ImageModel>() {
+            override fun areItemsTheSame(oldItem: ImageModel, newItem: ImageModel): Boolean {
                 return oldItem.thumbnail == newItem.thumbnail
             }
 
-            override fun areContentsTheSame(oldItem: Image, newItem: Image): Boolean {
+            override fun areContentsTheSame(oldItem: ImageModel, newItem: ImageModel): Boolean {
                 return oldItem == newItem
             }
         }
@@ -28,7 +27,7 @@ class FavoriteImageAdapter(
     inner class ViewHolder(
         private val binding: ItemImageBinding
     ): RecyclerView.ViewHolder(binding.root) {
-        fun bind(model: Image?) = with(binding){
+        fun bind(model: ImageModel?) = with(binding){
             model?.let { image ->
                 iv.loadImage(
                     image.thumbnail,

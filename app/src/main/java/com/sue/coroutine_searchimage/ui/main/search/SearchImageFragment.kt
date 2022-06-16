@@ -9,7 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import com.sue.coroutine_searchimage.databinding.FragmentSearchImageBinding
-import com.sue.coroutine_searchimage.domain.model.Image
+import com.sue.coroutine_searchimage.domain.model.ImageModel
 import com.sue.coroutine_searchimage.ui.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -69,7 +69,7 @@ internal class SearchImageFragment: BaseFragment<SearchImageViewModel, FragmentS
         }
     }
 
-    private fun handleSuccess(images: PagingData<Image>) {
+    private fun handleSuccess(images: PagingData<ImageModel>) {
         viewLifecycleOwner.lifecycleScope.launch {
             adapter.submitData(images)
         }

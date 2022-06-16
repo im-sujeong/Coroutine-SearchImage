@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.sue.coroutine_searchimage.domain.model.Image
+import com.sue.coroutine_searchimage.domain.model.ImageModel
 import com.sue.coroutine_searchimage.domain.use_case.UseCases
 import com.sue.coroutine_searchimage.ui.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -30,8 +30,8 @@ class FavoriteImageViewModel @Inject constructor(
             .collect()
     }
 
-    fun deleteFavoriteImage(image: Image) = viewModelScope.launch{
-        useCases.deleteFavoriteImageUseCase(image)
+    fun deleteFavoriteImage(imageModel: ImageModel) = viewModelScope.launch{
+        useCases.deleteFavoriteImageUseCase(imageModel)
     }
 
     private fun setState(state: FavoriteImageState) {
