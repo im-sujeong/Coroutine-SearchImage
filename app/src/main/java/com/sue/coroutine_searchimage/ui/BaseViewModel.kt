@@ -1,4 +1,4 @@
-package com.sue.coroutine_searchimage.ui.main
+package com.sue.coroutine_searchimage.ui
 
 import android.util.Log
 import androidx.lifecycle.ViewModel

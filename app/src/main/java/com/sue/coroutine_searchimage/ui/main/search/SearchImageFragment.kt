@@ -1,11 +1,7 @@
 package com.sue.coroutine_searchimage.ui.main.search
 
 import android.os.Bundle
-import android.util.Log
-import android.view.KeyEvent
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -14,11 +10,9 @@ import androidx.paging.LoadState
 import androidx.paging.PagingData
 import com.sue.coroutine_searchimage.databinding.FragmentSearchImageBinding
 import com.sue.coroutine_searchimage.domain.model.Image
-import com.sue.coroutine_searchimage.ui.main.BaseFragment
+import com.sue.coroutine_searchimage.ui.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import retrofit2.HttpException
 
 @AndroidEntryPoint
 internal class SearchImageFragment: BaseFragment<SearchImageViewModel, FragmentSearchImageBinding>() {

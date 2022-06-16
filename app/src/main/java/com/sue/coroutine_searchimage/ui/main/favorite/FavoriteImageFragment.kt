@@ -6,7 +6,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.sue.coroutine_searchimage.databinding.FragmentFavoriteImageBinding
 import com.sue.coroutine_searchimage.domain.model.Image
-import com.sue.coroutine_searchimage.ui.main.BaseFragment
+import com.sue.coroutine_searchimage.ui.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

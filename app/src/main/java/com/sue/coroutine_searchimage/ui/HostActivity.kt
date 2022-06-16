@@ -1,4 +1,4 @@
-package com.sue.coroutine_searchimage.ui.main
+package com.sue.coroutine_searchimage.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,12 +7,12 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.sue.coroutine_searchimage.R
-import com.sue.coroutine_searchimage.databinding.ActivityMainBinding
+import com.sue.coroutine_searchimage.databinding.ActivityHostBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding;
+class HostActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityHostBinding
 
     private val navigationController by lazy {
         (supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment).navController
@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityHostBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         initViews()

@@ -1,11 +1,10 @@
-package com.sue.coroutine_searchimage.ui.main
+package com.sue.coroutine_searchimage.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
 
 internal abstract class BaseFragment<VM: BaseViewModel, VB: ViewBinding>: Fragment(){

@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Coroutine_SearchImage">
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name=".ui.HostActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
